@@ -22,7 +22,7 @@
                 <div class="col-md-12">
         <div class="row">
             <div class="col-md-12">
-                <form action="index.php" method="post">
+                <form action="translate.html" method="post">
                     <div class="form-group">
                         <label for="text">Text to translate</label>
                         <textarea class="form-control" id="text" name="text" rows="3"></textarea>
@@ -31,24 +31,6 @@
                 </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <?php
-                    if(isset($_POST['text'])){
-                        $text = $_POST['text'];
-                        $text = str_replace(" ", "%20", $text);
-                        $url = "http://cat-translator.herokuapp.com/translate?text=" . $text;
-                        $ch = curl_init();
-                        curl_setopt($ch, CURLOPT_URL, $url);
-                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                        $output = curl_exec($ch);
-                        curl_close($ch);
-                        $output = json_decode($output, true);
-                        echo "<h2>Translation</h2>";
-                        echo "<p>" . $output['translation'] . "</p>";
-                    }
-                ?>
-            </div>
     </body>
 
 </html>
